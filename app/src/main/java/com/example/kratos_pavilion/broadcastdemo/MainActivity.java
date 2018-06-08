@@ -1,5 +1,9 @@
 package com.example.kratos_pavilion.broadcastdemo;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private  ArrayList<IncomingNumber> arrayList=new ArrayList<>();
     private RecyclerAdapter adapter;
+    private BroadcastReceiver broadcastReceiver;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         adapter=new RecyclerAdapter(arrayList);
         recyclerView.setAdapter(adapter);
         readfrmDb();
+
+        broadcastReceiver=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+              readfrmDb();
+            }
+        };
     }
     private void readfrmDb()
     {
@@ -54,5 +68,15 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);
         }
+    }
+    protected void onResume()
+    {
+         super.onResume();
+         registerReceiver(broadcastReceiver,new IntentFilter(Dbcontract.UPDATE_UI_FILTER));
+    }
+    protected void onPause()
+    {
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
     }
 }

@@ -18,5 +18,8 @@ public class NumberReciever extends BroadcastReceiver {
             dbHelper.savenumber(number,database);
             dbHelper.close();
         }
+        Intent intent1=new Intent(Dbcontract.UPDATE_UI_FILTER);
+        context.sendBroadcast(intent1);
+
     }
 }
