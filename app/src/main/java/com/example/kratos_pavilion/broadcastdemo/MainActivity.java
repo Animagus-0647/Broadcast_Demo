@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 String number;
                 int id;
                 number=cursor.getString(cursor.getColumnIndex(Dbcontract.Incoming_number));
-                id=cursor.getInt(cursor.getColumnIndex("id"));
+                id=cursor.getInt(cursor.getColumnIndex("ID"));
                 arrayList.add(new IncomingNumber(id,number));
             }
             cursor.close();
@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);
         }
+        cursor.close();
+        dbHelper.close();
     }
     protected void onResume()
     {

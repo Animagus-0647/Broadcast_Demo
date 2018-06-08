@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewholder>
 {
-     private ArrayList<IncomingNumber> arrayList=new ArrayList<>();
+     private ArrayList<IncomingNumber> arrayList=new ArrayList<IncomingNumber>();
      public RecyclerAdapter(ArrayList<IncomingNumber> arrayList)
      {
       this.arrayList=arrayList;
