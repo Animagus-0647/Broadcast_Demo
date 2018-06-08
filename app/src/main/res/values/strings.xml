@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Broadcastdemo</string>
+    <string name="no_incoming_numbers">No Incoming Numbers</string>
+</resources>
